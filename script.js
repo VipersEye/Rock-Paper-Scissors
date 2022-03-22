@@ -27,3 +27,26 @@ function userPlay () {
         return userPlay();
     }
 }
+
+function playRound (userChoice, computerChoice) {
+    userChoice = userPlay();
+    computerChoice = computerPlay();
+
+    switch (true) {
+        case (userChoice === computerChoice):
+            alert(`Hm... ${userChoice} and ${computerChoice} are equal!`);
+            break;
+
+        case (userChoice === 'rock' && computerChoice === 'scissors'):
+        case (userChoice === 'scissors' && computerChoice === 'paper'):
+        case (userChoice === 'paper' && computerChoice === 'rock'):
+            alert(`You WIN! ${userChoice} beat ${computerChoice}`);
+            return ('player');
+
+        case (computerChoice === 'rock' && userChoice === 'scissors'): 
+        case (computerChoice === 'scissors' && userChoice === 'paper'):
+        case (computerChoice === 'paper' && userChoice === 'rock'):
+            alert(`You LOSE! ${computerChoice} beat ${userChoice}`);
+            return ('computer');
+    }
+}
