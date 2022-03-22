@@ -16,3 +16,14 @@ function computerPlay() {
     }
     return computerChoice;
 }
+
+function userPlay () {
+    let userChoice = prompt("Choose rock, paper or scissors").toLowerCase();
+    if (userChoice === 'rock' || userChoice === 'paper' || userChoice === 'scissors') {
+        return userChoice;
+    }
+    else {
+        alert('Wrong! You must choose rock, paper or scissors');
+        return userPlay();
+    }
+}
