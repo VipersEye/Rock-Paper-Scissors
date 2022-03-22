@@ -50,3 +50,24 @@ function playRound (userChoice, computerChoice) {
             return ('computer');
     }
 }
+
+function playGame () {
+    let userScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        let roundWinner = playRound();
+        console.log(roundWinner + ' is the ' + (i + 1) + ' round winner');
+        if (roundWinner === 'player') userScore++;
+        if (roundWinner === 'computer') computerScore++;
+    }
+    if (userScore > computerScore) {
+        console.log('User win the game!'  + ' ' + userScore + '-' + computerScore);
+    }
+    else if (userScore < computerScore) {
+        console.log(' Computer win the game!'  + ' ' + userScore + '-' + computerScore) ;
+    }
+
+    else if (userScore === computerScore) {
+        console.log('Your score are equal!' + ' ' + userScore + '-' + computerScore);
+    }
+}
