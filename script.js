@@ -35,7 +35,7 @@ function playRound (userChoice, computerChoice) {
     switch (true) {
         case (userChoice === computerChoice):
             alert(`Hm... ${userChoice} and ${computerChoice} are equal!`);
-            break;
+            return ('no one');
 
         case (userChoice === 'rock' && computerChoice === 'scissors'):
         case (userChoice === 'scissors' && computerChoice === 'paper'):
