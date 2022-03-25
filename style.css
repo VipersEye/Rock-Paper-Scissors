@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Metamorphous&display=swap');
+
 body {
     margin: 0;
+
+    font-family: 'Caveat', cursive;
+
+    background: url("./img/background.jpg") center no-repeat;
+    background-size: cover;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -12,8 +19,13 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     width: 100%;
-    max-width: 1200px;
+    max-width: 1170px;
     height: 100vh;
     margin: 0 auto;
     padding: 0 15px;
@@ -21,5 +33,60 @@ h1,h2,h3,h4,h5,h6 {
     border: 5px solid #000;
 }
 
+.btn {
+    display: inline-block;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+    background-size: cover;
+    background-position: 3px 8px, center;
+    background-repeat: no-repeat;
+}
+
 /* =========================== */
 
+.header {
+    font-size: 60px;
+    text-transform: uppercase;
+}
+
+.inner {
+    
+}
+
+.score-table {
+    font-size: 60px;
+}
+
+.user-score, .computer-score {
+    font-weight: 700;
+}
+
+.main-panel {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_img_rock {
+    background-image: url('./img/hand-rock.svg');
+    background-position: 12px 8px, center;
+}
+
+.btn_img_paper {
+    background-image: url('./img/hand-paper.svg');
+}
+
+.btn_img_scissors {
+    background-image: url('./img/hand-scissors.svg');
+}
+
+.user-selection, .computer-selection {
+    width: 400px;
+    height: 400px;
+}
+
+.computer-selection {
+    transform: rotateY(180deg);
+}
