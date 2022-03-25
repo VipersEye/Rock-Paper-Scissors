@@ -54,11 +54,13 @@ function playRound (userChoice, computerChoice) {
 function playGame () {
     let userScore = 0;
     let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
+    let i = 0;
+    while (userScore < 5 && computerScore < 5) {
         let roundWinner = playRound();
         console.log(roundWinner + ' is the ' + (i + 1) + ' round winner');
         if (roundWinner === 'player') userScore++;
         if (roundWinner === 'computer') computerScore++;
+        i++;
     }
     if (userScore > computerScore) {
         console.log('User win the game!'  + ' ' + userScore + '-' + computerScore);
