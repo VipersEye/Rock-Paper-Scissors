@@ -1,5 +1,7 @@
 function computerPlay() {
     let computerChoice;
+    let selectionImg = document.querySelector('.computer-selection');
+    
     switch (Math.floor(Math.random() * 3)) {
         case 0:
             computerChoice = 'rock';
@@ -14,6 +16,8 @@ function computerPlay() {
             computerPlay();
             break;
     }
+    let newSrc = `./img/hand-${computerChoice}.svg`
+    selectionImg.setAttribute('src', newSrc)
     return computerChoice;
 }
 
@@ -28,25 +32,24 @@ function userPlay () {
     }
 }
 
-function playRound (userChoice, computerChoice) {
-    userChoice = userPlay();
-    computerChoice = computerPlay();
+function playRound (userChoice) {
+    let computerChoice = computerPlay();
 
     switch (true) {
         case (userChoice === computerChoice):
-            alert(`Hm... ${userChoice} and ${computerChoice} are equal!`);
+            console.log('no one');
             return ('no one');
 
         case (userChoice === 'rock' && computerChoice === 'scissors'):
         case (userChoice === 'scissors' && computerChoice === 'paper'):
         case (userChoice === 'paper' && computerChoice === 'rock'):
-            alert(`You WIN! ${userChoice} beat ${computerChoice}`);
+            console.log('user');
             return ('player');
 
         case (computerChoice === 'rock' && userChoice === 'scissors'): 
         case (computerChoice === 'scissors' && userChoice === 'paper'):
         case (computerChoice === 'paper' && userChoice === 'rock'):
-            alert(`You LOSE! ${computerChoice} beat ${userChoice}`);
+            console.log('computer');
             return ('computer');
     }
 }
@@ -56,7 +59,6 @@ function playGame () {
     let computerScore = 0;
     let i = 0;
     while (userScore < 5 && computerScore < 5) {
-        let roundWinner = playRound();
         console.log(roundWinner + ' is the ' + (i + 1) + ' round winner');
         if (roundWinner === 'player') userScore++;
         if (roundWinner === 'computer') computerScore++;
@@ -73,3 +75,16 @@ function playGame () {
         console.log('Your score are equal!' + ' ' + userScore + '-' + computerScore);
     }
 }
+
+
+let btnsSelection = document.querySelectorAll('.btn');
+let selectionImg = document.querySelector('.user-selection');
+
+btnsSelection.forEach( btn => {
+    btn.addEventListener('click', evt => {
+        let btnValue = evt.target.value;
+        let newSrc = `./img/hand-${btnValue}.svg`
+        selectionImg.setAttribute('src', newSrc)
+        playRound(btnValue);    
+    });
+});
