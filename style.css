@@ -77,6 +77,8 @@ h1,h2,h3,h4,h5,h6 {
     width: 300px;
     height: 200px;
 
+    margin: 0 20px;
+
     overflow: hidden;
 }
 
@@ -118,5 +120,11 @@ h1,h2,h3,h4,h5,h6 {
 
 .btn_img_restart {
     background-image: url('./img/icon-restart.svg');
+
+    transition: transform .5s linear;
+}
+
+.btn_img_restart:hover {
+    transform: rotate(360deg);
 }
 
