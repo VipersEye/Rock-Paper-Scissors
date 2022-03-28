@@ -39,6 +39,8 @@ h1,h2,h3,h4,h5,h6 {
     width: 100px;
     height: 100px;
 
+    margin: 0 20px;
+
     border-radius: 50%;
     background-size: cover;
     background-position: 3px 8px, center;
@@ -54,10 +56,6 @@ h1,h2,h3,h4,h5,h6 {
     text-transform: uppercase;
 }
 
-.inner {
-    
-}
-
 .score-table {
     font-size: 60px;
 }
@@ -66,9 +64,39 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 700;
 }
 
-.main-panel {
+.selection {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 100px;
+}
+
+.selection__img {
+    position: relative;
+    
+    width: 300px;
+    height: 200px;
+
+    overflow: hidden;
+}
+
+.user-selection, .computer-selection {
+    position: absolute;
+    top: 60%;
+    z-index: 1;
+
+    width: 400px;
+    height: 400px;
+}
+
+.user-selection {
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.computer-selection {
+    right: 50%;
+    transform: translate3d(50%, -50%, 0) rotateY(180deg);
 }
 
 .btn_img_rock {
@@ -84,11 +112,11 @@ h1,h2,h3,h4,h5,h6 {
     background-image: url('./img/hand-scissors.svg');
 }
 
-.user-selection, .computer-selection {
-    width: 400px;
-    height: 400px;
+.btn_img_play {
+    background-image: url('./img/icon_play.svg');
 }
 
-.computer-selection {
-    transform: rotateY(180deg);
+.btn_img_restart {
+    background-image: url('./img/icon-restart.svg');
 }
+
