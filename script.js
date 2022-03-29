@@ -1,5 +1,4 @@
 let btnStart = document.querySelector('.btn');
-let roundNumber = 0;
 let userScore = 0;
 let computerScore = 0;
 btnStart.addEventListener('click', (e)=> {
@@ -14,40 +13,32 @@ btnStart.addEventListener('click', (e)=> {
 function startGame() {
     
     let btnsSelection = document.querySelectorAll('.btn[value]');
-    let selectionUserImg = document.querySelector('.user-selection');
-    let userScoreText = document.querySelector('.user-score');
-    let computerScoreText = document.querySelector('.computer-score');
 
     btnStart.style.display = "none";
 
     btnsSelection.forEach( btn => {
         btn.disabled = false;
         btn.addEventListener('click', evt => {
-            let btnValue = evt.target.value;
-            let newSrc = `./img/hand-${btnValue}.svg`;
-            selectionUserImg.setAttribute('src', newSrc);
-            playRound(btnValue, userScoreText, computerScoreText);    
+            let userChoice = evt.target.value;
+            setSrcImg('user', userChoice);
+            playRound(userChoice);    
         });
     });
 }
 
 function restartGame() {
     let btnsSelection = document.querySelectorAll('.btn[value]');
-    let selectionUserImg = document.querySelector('.user-selection');
-    let selectionComputerImg = document.querySelector('.computer-selection');
     
     let userScoreText = document.querySelector('.user-score');
     let computerScoreText = document.querySelector('.computer-score');
 
-    selectionUserImg.setAttribute('src', './img/hand-rock.svg');
-
-    roundNumber = 0;
     userScore = 0;
     computerScore = 0;
 
     userScoreText.textContent = userScore;
     computerScoreText.textContent = computerScore;
-    selectionComputerImg.setAttribute('src', './img/hand-rock.svg');
+    setSrcImg('user', 'rock');
+    setSrcImg('computer', 'rock');
 
     btnStart.style.display = "none";
 
@@ -56,22 +47,11 @@ function restartGame() {
     });
 }
 
-function stopGame() {
-    let btnsSelection = document.querySelectorAll('.btn[value]');
-    btnsSelection.forEach((btn)=> {
-        btn.disabled = true;
-    })
-
-
-    btnStart.classList.remove('btn_img_play');
-    btnStart.classList.add('btn_img_restart');
-
-    btnStart.style.display = 'inline-block';
-}
-
-function playRound (userChoice, userScoreText, computerScoreText) {
+function playRound (userChoice) {
 
     let roundWinner = defineWinner(userChoice);
+    let userScoreText = document.querySelector('.user-score');
+    let computerScoreText = document.querySelector('.computer-score');
 
     if (roundWinner === 'user') {
         userScore++;
@@ -81,7 +61,6 @@ function playRound (userChoice, userScoreText, computerScoreText) {
         computerScore++;
         computerScoreText.textContent = computerScore;
     }
-    roundNumber++;
 
     if (userScore >= 5 || computerScore >= 5) {
         stopGame();
@@ -126,7 +105,26 @@ function computerPlay() {
             break;
     }
 
-    let newSrc = `./img/hand-${computerChoice}.svg`;
-    selectionImg.setAttribute('src', newSrc);
+    setSrcImg('computer', computerChoice);
     return computerChoice;
+}
+
+function stopGame() {
+    let btnsSelection = document.querySelectorAll('.btn[value]');
+    btnsSelection.forEach((btn)=> {
+        btn.disabled = true;
+    })
+
+
+    btnStart.classList.remove('btn_img_play');
+    btnStart.classList.add('btn_img_restart');
+
+    btnStart.style.display = 'inline-block';
+}
+
+function setSrcImg(selectedImg ,choice) {
+    let newSrc = `./img/hand-${choice}.svg`;
+    let img = document.querySelector(`.${selectedImg}-selection`);
+
+    img.setAttribute('src', newSrc);    
 }
