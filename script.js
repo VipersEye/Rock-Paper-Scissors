@@ -29,14 +29,11 @@ function startGame() {
 function restartGame() {
     let btnsSelection = document.querySelectorAll('.btn[value]');
     
-    let userScoreText = document.querySelector('.user-score');
-    let computerScoreText = document.querySelector('.computer-score');
-
     userScore = 0;
     computerScore = 0;
 
-    userScoreText.textContent = userScore;
-    computerScoreText.textContent = computerScore;
+    setTextScore('user', 0);
+    setTextScore('computer', 0);
     setSrcImg('user', 'rock');
     setSrcImg('computer', 'rock');
 
@@ -50,16 +47,14 @@ function restartGame() {
 function playRound (userChoice) {
 
     let roundWinner = defineWinner(userChoice);
-    let userScoreText = document.querySelector('.user-score');
-    let computerScoreText = document.querySelector('.computer-score');
 
     if (roundWinner === 'user') {
         userScore++;
-        userScoreText.textContent = userScore;
+        setTextScore('user', userScore);
     }
     else if (roundWinner === 'computer') {
         computerScore++;
-        computerScoreText.textContent = computerScore;
+        setTextScore('computer', computerScore);
     }
 
     if (userScore >= 5 || computerScore >= 5) {
@@ -127,4 +122,9 @@ function setSrcImg(selectedImg ,choice) {
     let img = document.querySelector(`.${selectedImg}-selection`);
 
     img.setAttribute('src', newSrc);    
+}
+
+function setTextScore(selectedText, score) {
+    let textScore = document.querySelector(`.${selectedText}-score`);
+    textScore.textContent = score;
 }
