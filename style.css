@@ -67,8 +67,6 @@ h1,h2,h3,h4,h5,h6 {
 .selection {
     display: flex;
     align-items: center;
-
-    margin-bottom: 100px;
 }
 
 .selection__img {
@@ -99,6 +97,13 @@ h1,h2,h3,h4,h5,h6 {
 .computer-selection {
     right: 50%;
     transform: translate3d(50%, -50%, 0) rotateY(180deg);
+}
+
+.winner-text {
+    margin: 10px 0 30px;
+    height: 76px;
+
+    font-size: 60px;
 }
 
 .btn_img_rock {

@@ -28,10 +28,12 @@ function startGame() {
 
 function restartGame() {
     let btnsSelection = document.querySelectorAll('.btn[value]');
+    let gameWinnerText = document.querySelector('.winner-text');
     
     userScore = 0;
     computerScore = 0;
 
+    gameWinnerText.textContent = '';
     setTextScore('user', 0);
     setTextScore('computer', 0);
     setSrcImg('user', 'rock');
@@ -46,7 +48,8 @@ function restartGame() {
 
 function playRound (userChoice) {
 
-    let roundWinner = defineWinner(userChoice);
+    let roundWinner = defineRoundWinner(userChoice);
+    let gameWinnerText = document.querySelector('.winner-text');
 
     if (roundWinner === 'user') {
         userScore++;
@@ -57,12 +60,18 @@ function playRound (userChoice) {
         setTextScore('computer', computerScore);
     }
 
-    if (userScore >= 5 || computerScore >= 5) {
+    if (userScore >= 5) {
+        gameWinnerText.textContent = 'You WIN the game!';
+        stopGame();
+    }
+
+    else if (computerScore >= 5) {
+        gameWinnerText.textContent = 'You lose the game :(';
         stopGame();
     }
 }
 
-function defineWinner (userChoice) {
+function defineRoundWinner (userChoice) {
     let computerChoice = computerPlay();
 
     switch (true) {
