@@ -2,19 +2,32 @@ let btnStart = document.querySelector('.btn');
 let roundNumber = 0;
 let userScore = 0;
 let computerScore = 0;
-btnStart.addEventListener('click', ()=> {
-    playGame();
+btnStart.addEventListener('click', (e)=> {
+    if (e.target.classList[1] == 'btn_img_play') {
+        playGame();
+    }
+    else {
+        restartGame();
+    } 
 });
 
 function playGame() {
     let btnsSelection = document.querySelectorAll('.btn[value]');
-    let selectionImg = document.querySelector('.user-selection');
+    let selectionUserImg = document.querySelector('.user-selection');
+    let selectionComputerImg = document.querySelector('.computer-selection');
     
     let userScoreText = document.querySelector('.user-score');
     let computerScoreText = document.querySelector('.computer-score');
 
+    selectionUserImg.setAttribute('src', './img/hand-rock.svg');
+
+    roundNumber = 0;
+    userScore = 0;
+    computerScore = 0;
+
     userScoreText.textContent = userScore;
     computerScoreText.textContent = computerScore;
+    selectionComputerImg.setAttribute('src', './img/hand-rock.svg');
 
     btnStart.style.display = "none";
 
@@ -22,20 +35,47 @@ function playGame() {
         btn.disabled = false;
         btn.addEventListener('click', evt => {
             let btnValue = evt.target.value;
-            let newSrc = `./img/hand-${btnValue}.svg`
-            selectionImg.setAttribute('src', newSrc)
+            let newSrc = `./img/hand-${btnValue}.svg`;
+            selectionUserImg.setAttribute('src', newSrc);
             playRound(btnValue, userScoreText, computerScoreText);    
         });
     });
 }
 
-function stopGame() {
+function restartGame() {
+    let btnsSelection = document.querySelectorAll('.btn[value]');
+    let selectionUserImg = document.querySelector('.user-selection');
+    let selectionComputerImg = document.querySelector('.computer-selection');
+    
+    let userScoreText = document.querySelector('.user-score');
+    let computerScoreText = document.querySelector('.computer-score');
+
+    selectionUserImg.setAttribute('src', './img/hand-rock.svg');
+
     roundNumber = 0;
     userScore = 0;
     computerScore = 0;
 
-    btnStart.classList.toggle('btn_img_play');
-    btnStart.classList.toggle('btn_img_restart');
+    userScoreText.textContent = userScore;
+    computerScoreText.textContent = computerScore;
+    selectionComputerImg.setAttribute('src', './img/hand-rock.svg');
+
+    btnStart.style.display = "none";
+
+    btnsSelection.forEach(btn => {
+        btn.disabled = false;
+    });
+}
+
+function stopGame() {
+    let btnsSelection = document.querySelectorAll('.btn[value]');
+    btnsSelection.forEach((btn)=> {
+        btn.disabled = true;
+    })
+
+
+    btnStart.classList.remove('btn_img_play');
+    btnStart.classList.add('btn_img_restart');
 
     btnStart.style.display = 'inline-block';
 }
@@ -66,7 +106,7 @@ function playRound (userChoice, userScoreText, computerScoreText) {
         userScore++;
         userScoreText.textContent = userScore;
     }
-    if (roundWinner === 'computer') {
+    else if (roundWinner === 'computer') {
         computerScore++;
         computerScoreText.textContent = computerScore;
     }
@@ -95,7 +135,8 @@ function computerPlay() {
             computerPlay();
             break;
     }
-    let newSrc = `./img/hand-${computerChoice}.svg`
-    selectionImg.setAttribute('src', newSrc)
+
+    let newSrc = `./img/hand-${computerChoice}.svg`;
+    selectionImg.setAttribute('src', newSrc);
     return computerChoice;
 }
